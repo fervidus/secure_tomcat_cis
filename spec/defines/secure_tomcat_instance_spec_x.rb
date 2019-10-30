@@ -6,7 +6,7 @@ describe 'secure_tomcat::instance' do
       context "on #{os}" do
         let(:facts) do
           facts.merge(
-            staging_http_get: 'curl'
+            staging_http_get: 'curl',
           )
         end
 
@@ -20,7 +20,7 @@ describe 'secure_tomcat::instance' do
         #   }
         # }
 
-        context "secure_tomcat::instance class without any parameters" do
+        context 'secure_tomcat::instance class without any parameters' do
           it { is_expected.to compile.with_all_deps }
 
           # it { is_expected.to contain_class('secure_tomcat::params') }

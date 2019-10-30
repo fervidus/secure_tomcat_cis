@@ -3,7 +3,7 @@ require 'spec_helper_acceptance'
 describe 'secure_tomcat defines' do
   context 'default parameters' do
     # Using puppet_apply as a helper
-    it 'should work idempotently with no errors' do
+    it 'works idempotently with no errors' do
       pp = <<-EOS
       class { 'java' :
         package => 'java-1.8.0-openjdk-devel',

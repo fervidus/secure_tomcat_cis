@@ -6,21 +6,21 @@ describe 'secure_tomcat::install' do
       context "on #{os}" do
         let(:facts) do
           facts.merge(
-            staging_http_get: 'curl'
+            staging_http_get: 'curl',
           )
         end
 
         let(:title) { '/opt/tomcat' }
 
-        let(:params) {
+        let(:params) do
           {
             user:       'tomcat_admin',
             group:      'tomcat',
-            source_url: 'https://www-us.apache.org/dist/tomcat/tomcat-7/v7.0.73/bin/apache-tomcat-7.0.73.tar.gz'
+            source_url: 'https://www-us.apache.org/dist/tomcat/tomcat-7/v7.0.73/bin/apache-tomcat-7.0.73.tar.gz',
           }
-        }
+        end
 
-        context "secure_tomcat::install class with user, group and source_url params" do
+        context 'secure_tomcat::install class with user, group and source_url params' do
           it { is_expected.to compile.with_all_deps }
 
           # it { is_expected.to contain_class('secure_tomcat::params') }

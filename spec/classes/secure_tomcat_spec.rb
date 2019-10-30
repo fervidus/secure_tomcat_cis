@@ -4,38 +4,38 @@ describe 'secure_tomcat' do
   context 'supported operating systems' do
     on_supported_os.each do |os, facts|
       context "on #{os}" do
-        context "secure_tomcat class with an install and war" do
+        context 'secure_tomcat class with an install and war' do
           let(:facts) do
             facts.merge(
               staging_http_get: 'curl',
-              augeasversion: '1.7.0'
+              augeasversion: '1.7.0',
             )
           end
 
-          let(:params) {
+          let(:params) do
             {
               installs: {
                 '/opt/tomcat' => {
                   'user'       => 'tomcat_admin',
                   'group'      => 'tomcat',
                   'source_url' => 'https://www-us.apache.org/dist/tomcat/tomcat-7/v7.0.73/bin/apache-tomcat-7.0.73.tar.gz',
-                }
+                },
               },
               wars: {
                 'hello.war' => {
                   'catalina_base' => '/opt/tomcat',
                   'war_source' => 'https://glassfish.dev.java.net/downloads/quickstart/hello.war',
-                }
-              }
+                },
+              },
             }
-          }
+          end
 
           it {
             is_expected.to contain_file('/opt/tomcat/bin').with(
               'ensure'  => 'directory',
               'owner'   => 'tomcat_admin',
               'group'   => 'tomcat',
-              'mode'    => 'g-w,o-rwx'
+              'mode'    => 'g-w,o-rwx',
             )
           }
 
@@ -44,7 +44,7 @@ describe 'secure_tomcat' do
               'ensure'  => 'file',
               'owner'   => 'tomcat_admin',
               'group'   => 'tomcat',
-              'mode'    => '0770'
+              'mode'    => '0770',
             )
           }
 
@@ -53,7 +53,7 @@ describe 'secure_tomcat' do
               'ensure'  => 'file',
               'owner'   => 'tomcat_admin',
               'group'   => 'tomcat',
-              'mode'    => 'g-w,o-rwx'
+              'mode'    => 'g-w,o-rwx',
             )
           }
 
@@ -62,7 +62,7 @@ describe 'secure_tomcat' do
               'ensure'  => 'file',
               'owner'   => 'tomcat_admin',
               'group'   => 'tomcat',
-              'mode'    => 'g-w,o-rwx'
+              'mode'    => 'g-w,o-rwx',
             )
           }
 
@@ -71,7 +71,7 @@ describe 'secure_tomcat' do
               'ensure'  => 'file',
               'owner'   => 'tomcat_admin',
               'group'   => 'tomcat',
-              'mode'    => 'g-w,o-rwx'
+              'mode'    => 'g-w,o-rwx',
             )
           }
 
@@ -80,7 +80,7 @@ describe 'secure_tomcat' do
               'ensure'  => 'file',
               'owner'   => 'tomcat_admin',
               'group'   => 'tomcat',
-              'mode'    => 'g-w,o-rwx'
+              'mode'    => 'g-w,o-rwx',
             )
           }
 
@@ -89,7 +89,7 @@ describe 'secure_tomcat' do
               'ensure'  => 'file',
               'owner'   => 'tomcat_admin',
               'group'   => 'tomcat',
-              'mode'    => 'g-w,o-rwx'
+              'mode'    => 'g-w,o-rwx',
             )
           }
 
@@ -98,7 +98,7 @@ describe 'secure_tomcat' do
               'ensure'  => 'file',
               'owner'   => 'tomcat_admin',
               'group'   => 'tomcat',
-              'mode'    => 'g-w,o-rwx'
+              'mode'    => 'g-w,o-rwx',
             )
           }
 
@@ -107,7 +107,7 @@ describe 'secure_tomcat' do
               'ensure'  => 'directory',
               'owner'   => 'tomcat_admin',
               'group'   => 'tomcat',
-              'mode'    => 'g-w,o-rwx'
+              'mode'    => 'g-w,o-rwx',
             )
           }
 
@@ -116,7 +116,7 @@ describe 'secure_tomcat' do
               'ensure'  => 'directory',
               'owner'   => 'tomcat_admin',
               'group'   => 'tomcat',
-              'mode'    => 'o-rwx'
+              'mode'    => 'o-rwx',
             )
           }
 
@@ -125,73 +125,73 @@ describe 'secure_tomcat' do
               'ensure'  => 'directory',
               'owner'   => 'tomcat_admin',
               'group'   => 'tomcat',
-              'mode'    => 'o-rwx'
+              'mode'    => 'o-rwx',
             )
           }
 
           it {
             is_expected.to contain_file('/opt/tomcat/webapps/js-examples').with(
-              'ensure'  => 'absent'
+              'ensure'  => 'absent',
             )
           }
 
           it {
             is_expected.to contain_file('/opt/tomcat/webapps/servlet-example').with(
-              'ensure'  => 'absent'
+              'ensure'  => 'absent',
             )
           }
 
           it {
             is_expected.to contain_file('/opt/tomcat/webapps/tomcat-docs').with(
-              'ensure'  => 'absent'
+              'ensure'  => 'absent',
             )
           }
 
           it {
             is_expected.to contain_file('/opt/tomcat/webapps/webdav').with(
-              'ensure'  => 'absent'
+              'ensure'  => 'absent',
             )
           }
 
           it {
             is_expected.to contain_file('/opt/tomcat/webapps/balancer').with(
-              'ensure'  => 'absent'
+              'ensure'  => 'absent',
             )
           }
 
           it {
             is_expected.to contain_file('/opt/tomcat/webapps/ROOT/admin').with(
-              'ensure'  => 'absent'
+              'ensure'  => 'absent',
             )
           }
 
           it {
             is_expected.to contain_file('/opt/tomcat/webapps/examples').with(
-              'ensure'  => 'absent'
+              'ensure'  => 'absent',
             )
           }
 
           it {
             is_expected.to contain_file('/opt/tomcat/webapps/host-manager').with(
-              'ensure'  => 'absent'
+              'ensure'  => 'absent',
             )
           }
 
           it {
             is_expected.to contain_file('/opt/tomcat/server/webapps/manager').with(
-              'ensure'  => 'absent'
+              'ensure'  => 'absent',
             )
           }
 
           it {
             is_expected.to contain_file('/opt/tomcat/server/webapps/host-manager').with(
-              'ensure'  => 'absent'
+              'ensure'  => 'absent',
             )
           }
 
           it {
             is_expected.to contain_file('/opt/tomcat/webapps/manager').with(
-              'ensure'  => 'absent'
+              'ensure'  => 'absent',
             )
           }
 
@@ -199,31 +199,31 @@ describe 'secure_tomcat' do
             is_expected.to contain_file('/opt/tomcat/webapps/hello/META-INF/context.xml').with(
               'ensure'  => 'file',
               'replace' => 'false',
-              'content' => '<Context/>'
+              'content' => '<Context/>',
             )
           }
 
           it {
             is_expected.to contain_file('/opt/tomcat/webapps/hello/META-INF').with(
-              'ensure'  => 'directory'
+              'ensure'  => 'directory',
             )
           }
 
           it {
             is_expected.to contain_file('/opt/tomcat/webapps/hello/WEB-INF/classes/logging.properties').with(
-              'ensure'  => 'file'
+              'ensure'  => 'file',
             )
           }
 
           it {
             is_expected.to contain_file('/opt/tomcat/webapps/hello/WEB-INF/web.xml').with(
-              'ensure'  => 'file'
+              'ensure'  => 'file',
             )
           }
 
           it {
             is_expected.to contain_file('/opt/tomcat/webapps/hello').with(
-              'ensure'  => 'directory'
+              'ensure'  => 'directory',
             )
           }
 
@@ -232,63 +232,63 @@ describe 'secure_tomcat' do
               'ensure'  => 'directory',
               'owner'   => 'tomcat_admin',
               'group'   => 'tomcat',
-              'mode'    => 'g-w,o-rwx'
+              'mode'    => 'g-w,o-rwx',
             )
           }
 
           it { is_expected.to compile.with_all_deps }
         end
 
-        context "secure_tomcat class with an install and war; but missing catalina_base" do
+        context 'secure_tomcat class with an install and war; but missing catalina_base' do
           let(:facts) do
             facts.merge(
               staging_http_get: 'curl',
-              augeasversion: '1.7.0'
+              augeasversion: '1.7.0',
             )
           end
 
-          let(:params) {
+          let(:params) do
             {
               installs: {
                 '/opt/tomcat' => {
                   'user'       => 'tomcat_admin',
                   'group'      => 'tomcat',
                   'source_url' => 'https://www-us.apache.org/dist/tomcat/tomcat-7/v7.0.73/bin/apache-tomcat-7.0.73.tar.gz',
-                }
+                },
               },
               wars: {
                 'hello.war' => {
                   'war_source' => 'https://glassfish.dev.java.net/downloads/quickstart/hello.war',
-                }
-              }
+                },
+              },
             }
-          }
+          end
 
           it { is_expected.not_to compile.with_all_deps }
         end
 
-        context "secure_tomcat class with an install and war and context change" do
+        context 'secure_tomcat class with an install and war and context change' do
           let(:facts) do
             facts.merge(
               staging_http_get: 'curl',
-              augeasversion: '1.7.0'
+              augeasversion: '1.7.0',
             )
           end
 
-          let(:params) {
+          let(:params) do
             {
               installs: {
                 '/opt/tomcat' => {
                   'user'       => 'tomcat_admin',
                   'group'      => 'tomcat',
                   'source_url' => 'https://www-us.apache.org/dist/tomcat/tomcat-7/v7.0.73/bin/apache-tomcat-7.0.73.tar.gz',
-                }
+                },
               },
               wars: {
                 'hello.war' => {
                   'catalina_base' => '/opt/tomcat',
                   'war_source' => 'https://glassfish.dev.java.net/downloads/quickstart/hello.war',
-                }
+                },
               },
               config_context_resources: {
                 'jdbc/tm_datasource' => {
@@ -304,11 +304,11 @@ describe 'secure_tomcat' do
                     'maxWait' =>                10_000,
                     'username' =>               'SVC_NWOS_TABLER',
                     'password' =>               'testpuppet',
-                  }
-                }
-              }
+                  },
+                },
+              },
             }
-          }
+          end
 
           it { is_expected.to compile.with_all_deps }
         end
